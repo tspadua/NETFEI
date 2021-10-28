@@ -4,7 +4,34 @@ const mongoClient = require( '../database/connection' );
 
 module.exports = {
 
-    async index (req, res) {
+    true_index (req, res) {
+        const titles = fs.readdirSync("videos").map(filename => {
+            return {title: (filename.split('.'))[0]};
+        });
+
+        res.send(titles);
+    },
+
+    index (req, res) {
+
+        res.send(
+            [{
+                title: "bigbuck"
+            },
+            {
+                title: "One Piece HD Online Gratis 9280p"
+            },
+            {
+                title: "Filme de Medo"
+            },
+            {
+                title: "Missão Impossível"
+            }]
+        );
+    },
+
+
+    async viewVideo (req, res) {
         res.sendFile(__dirname + "/index.html");
     },
 
@@ -37,6 +64,9 @@ module.exports = {
         const end = videoSize - 1;
 
         const contentLength = end - start + 1;
+        console.log('range: ', range)
+        console.log('videoSize: ', videoSize)
+        console.log('contentLenght: ', contentLength)
         const headers = {
             "Content-Range": `bytes ${start}-${end}/${videoSize}`,
             "Accept-Ranges": "bytes",
