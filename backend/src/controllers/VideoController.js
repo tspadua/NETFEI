@@ -46,6 +46,13 @@ module.exports = {
 
     async fetchVideo(req, res) {
         const range = req.headers.range;
+        const title = req.params.title;
+
+        if (title === null){
+            res.sendStatus(404);
+            return;
+        }
+
         if (!range) {
         res.status(400).send("Requires Range header");
         }
@@ -78,7 +85,7 @@ module.exports = {
         res.writeHead(206, headers);
 
         const bucket = new mongodb.GridFSBucket(db);
-        const downloadStream = bucket.openDownloadStreamByName('bigbuck', {
+        const downloadStream = bucket.openDownloadStreamByName(title, {
             start
         });
 
