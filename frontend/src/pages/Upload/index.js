@@ -17,17 +17,14 @@ export default function Upload() {
     async function handleNewVideo(e) {
         e.preventDefault();
 
-        const data = {
-            title,
-            video
-        };
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('video', video);
 
         try{
-            await api.post('upload', data, {
+            await api.post('upload', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    "Accept": "application/json",
-                    "type": "formData"
                 }                   
             })
             history.push('/');
@@ -57,7 +54,7 @@ export default function Upload() {
                     </div>
                     <div className="fileUpload">
                         <input className="upload" type="file" value={video} onChange={e => setVideo(e.target.value)}></input><br />
-                        <button className="button" type="submit">Upload video</button>
+                        <button className="button" type="submit">UPLOAD</button>
                     </div>
                 </div>
             </form>
