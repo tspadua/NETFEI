@@ -22,6 +22,8 @@ export default function Home() {
         <div>
             <Header />
             <ul>
+                <Thumbnail image={thumbnail} 
+                               title="teste"/>
                 {videos.map(video => (
                     <Thumbnail image={thumbnail} 
                                title={video.title}/>
