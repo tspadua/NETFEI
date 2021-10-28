@@ -1,0 +1,10 @@
+.videoCard {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.title {
+    color: #e6e6e6;
+    margin-top: 10px;
+}

@@ -1,0 +1,12 @@
+ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
+    list-style: none;
+    margin-right: 28px;
+}
+
+ul li{
+    padding: 8px;
+    position: relative;
+}
