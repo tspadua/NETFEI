@@ -18,7 +18,7 @@ module.exports = {
     },
 
     async upload(req, res) {
-        const title = req.body.title;
+        const title = req.params.title;
         const db = mongoClient.getDb();
         const bucket = new mongodb.GridFSBucket(db);
         const videoUploadStream = bucket.openUploadStream(title);
