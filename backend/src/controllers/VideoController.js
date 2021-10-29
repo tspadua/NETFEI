@@ -4,30 +4,12 @@ const mongoClient = require( '../database/connection' );
 
 module.exports = {
 
-    true_index (req, res) {
+    index (req, res) {
         const titles = fs.readdirSync("videos").map(filename => {
             return {title: (filename.split('.'))[0]};
         });
 
         res.send(titles);
-    },
-
-    index (req, res) {
-
-        res.send(
-            [{
-                title: "bigbuck"
-            },
-            {
-                title: "One Piece HD Online Gratis 9280p"
-            },
-            {
-                title: "Filme de Medo"
-            },
-            {
-                title: "Missão Impossível"
-            }]
-        );
     },
 
 
