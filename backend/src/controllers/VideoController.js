@@ -4,7 +4,34 @@ const mongoClient = require( '../database/connection' );
 
 module.exports = {
 
-    async index (req, res) {
+    true_index (req, res) {
+        const titles = fs.readdirSync("videos").map(filename => {
+            return {title: (filename.split('.'))[0]};
+        });
+
+        res.send(titles);
+    },
+
+    index (req, res) {
+
+        res.send(
+            [{
+                title: "bigbuck"
+            },
+            {
+                title: "One Piece HD Online Gratis 9280p"
+            },
+            {
+                title: "Filme de Medo"
+            },
+            {
+                title: "Missão Impossível"
+            }]
+        );
+    },
+
+
+    async viewVideo (req, res) {
         res.sendFile(__dirname + "/index.html");
     },
 
@@ -19,6 +46,13 @@ module.exports = {
 
     async fetchVideo(req, res) {
         const range = req.headers.range;
+        const title = req.params.title;
+
+        if (title === null){
+            res.sendStatus(404);
+            return;
+        }
+
         if (!range) {
         res.status(400).send("Requires Range header");
         }
@@ -37,6 +71,9 @@ module.exports = {
         const end = videoSize - 1;
 
         const contentLength = end - start + 1;
+        console.log('range: ', range)
+        console.log('videoSize: ', videoSize)
+        console.log('contentLenght: ', contentLength)
         const headers = {
             "Content-Range": `bytes ${start}-${end}/${videoSize}`,
             "Accept-Ranges": "bytes",
@@ -48,7 +85,7 @@ module.exports = {
         res.writeHead(206, headers);
 
         const bucket = new mongodb.GridFSBucket(db);
-        const downloadStream = bucket.openDownloadStreamByName('bigbuck', {
+        const downloadStream = bucket.openDownloadStreamByName(title, {
             start
         });
 
