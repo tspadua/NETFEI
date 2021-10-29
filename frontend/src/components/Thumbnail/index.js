@@ -7,7 +7,7 @@ export default function Thumbnail({image, title}) {
     const url = "/watch/" + title;
     return (
         <li className="videoCard">
-            <Link to={url}><img src={image} /></Link>
+            <Link to={url}><img src={image} width="360px" /></Link>
             <span className="title">{title}</span>
         </li>
     );

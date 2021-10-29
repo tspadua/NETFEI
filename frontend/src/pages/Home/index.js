@@ -5,7 +5,7 @@ import './styles.css';
 import Header from '../../components/Header';
 import Thumbnail from '../../components/Thumbnail';
 
-import thumbnail from '../../assets/thumbnail.png';
+import thumbnail from '../../assets/thumbnail1.jpg';
 
 import api from '../../services/api';
 
@@ -22,12 +22,10 @@ export default function Home() {
         <div>
             <Header />
             <ul>
-                <Thumbnail image={thumbnail} 
-                               title="teste"/>
-                {videos.map(video => (
-                    <Thumbnail image={thumbnail} 
-                               title={video.title}/>
-                ))}
+                <Thumbnail image={thumbnail} title="teste"/>
+                <Thumbnail image={thumbnail} title="teste"/>
+                <Thumbnail image={thumbnail} title="teste"/>
+                <Thumbnail image={thumbnail} title="teste"/>
             </ul>
         </div>
     );
