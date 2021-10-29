@@ -8,9 +8,9 @@ export default function Header() {
     return (
         <div>
             <header className="header">
-                <img src={logo} width="10%" alt="NETFEI" />
+                <Link to="/"><img src={logo} width="10%" alt="NETFEI" /></Link>
                 <div className="uploadRef">
-                    <Link to="/Upload" className="uploadLink">Upload a video</Link>
+                    <Link to="/upload" className="uploadLink">Upload a video</Link>
                 </div>
             </header>
         </div>
