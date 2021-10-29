@@ -1,4 +1,4 @@
-import React, { useState, userEffect, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 import './styles.css';
@@ -22,6 +22,8 @@ export default function Home() {
         <div>
             <Header />
             <ul>
+                <Thumbnail image={thumbnail} 
+                               title="teste"/>
                 {videos.map(video => (
                     <Thumbnail image={thumbnail} 
                                title={video.title}/>
