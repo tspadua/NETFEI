@@ -4,25 +4,37 @@ import { useHistory } from 'react-router';
 import './styles.css';
 import Header from '../../components/Header';
 
-import api from '../../services/api';
-
 export default function Player() {
-    const [video, setVideo] = useState([]);
-
+    const [title, setTitle] = useState("");
+    const url = window.location.pathname;
     useEffect(() => {
-        api.get('watch').then(response => {
-            setVideo(response.data);
-            console.log(video);
-        })
-    }, []);
+        switch(url) {
+            case "/watch/KK_buttercup":
+                setTitle("KK Slider - Buttercup");
+                break;
+            case "/watch/blue":
+                setTitle("Why Is Blue So Rare In Nature?");
+                break;
+            case "/watch/why_sleep":
+                setTitle("Why Do We Have To Sleep?");
+                break;
+            case "/watch/tesvi":
+                setTitle("The Elder Scrolls VI – Official Announcement Teaser");
+                break;
+        }
+    }, [url])
+    const src = "http://localhost:8000/" + url;
 
     return (
         <div>
             <Header />
-            <h2>HTTP Video Streaming</h2>
-            <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
-                <source src="http://localhost:8000/watch/bigbuck" type="video/mp4" />
-            </video>
+            <div className="video">
+                <h2>{title}</h2>
+                <video id="videoPlayer" width="650" controls muted="muted" autoPlay>
+                    <source src={src} type="video/mp4" />
+                </video>
+            </div>
+            
         </div>
     );
 }
