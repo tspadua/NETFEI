@@ -22,7 +22,7 @@ export default function Upload() {
         formData.append('video', video);
 
         try{
-            await api.post('upload', formData, {
+            await api.post('upload-video', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }                   
