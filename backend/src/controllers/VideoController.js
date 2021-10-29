@@ -36,10 +36,11 @@ module.exports = {
     },
 
     async upload(req, res) {
+        const title = req.body.title;
         const db = mongoClient.getDb();
         const bucket = new mongodb.GridFSBucket(db);
-        const videoUploadStream = bucket.openUploadStream('bigbuck');
-        const videoReadStream = fs.createReadStream('videos/bigbuck.mp4');
+        const videoUploadStream = bucket.openUploadStream(title);
+        const videoReadStream = fs.createReadStream(`videos/${title}.mp4`);
         videoReadStream.pipe(videoUploadStream);
         res.status(200).send("Done...");
     },
